@@ -7,9 +7,10 @@ package com.bignerdranch.android.beatbox3;
 // related to a sound.
 public class Sound {
    // full path to the sound file
-   private String mAssetPath;
+   private String    mAssetPath;
    // the sound name to display to the user
-   private String mName;
+   private String    mName;
+   private Integer   mSoundId;
 
    public Sound(String assetPath) {
       mAssetPath = assetPath;
@@ -26,5 +27,13 @@ public class Sound {
 
    public String getName() {
       return mName;
+   }
+
+   public Integer getSoundId() {
+      return mSoundId;
+   }
+
+   public void setSoundId(Integer soundId) {
+      mSoundId = soundId;
    }
 }

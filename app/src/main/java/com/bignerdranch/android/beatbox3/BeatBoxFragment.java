@@ -24,6 +24,9 @@ public class BeatBoxFragment extends Fragment {
    @Override
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
+      // retain the BeatBoxFragment instance across rotation, so a sound in the middle of being
+      // played won't be interrupted after rotation
+      setRetainInstance(true);
       mBeatBox = new BeatBox(getActivity());
    }
 
@@ -33,9 +36,16 @@ public class BeatBoxFragment extends Fragment {
       RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.fragment_beat_box_recycler_view);
       // lay out items in a grid of 3 columns
       recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+      // set adapter as one built from a list of Sound objects created from the SOUNDS_FOLDER
       recyclerView.setAdapter(new SoundAdapter(mBeatBox.getSounds()));
 
       return view;
+   }
+
+   @Override
+   public void onDestroy() {
+      super.onDestroy();
+      mBeatBox.release();
    }
 
    private class SoundHolder extends RecyclerView.ViewHolder {
@@ -45,6 +55,13 @@ public class BeatBoxFragment extends Fragment {
       public SoundHolder(LayoutInflater inflater, ViewGroup container) {
          super(inflater.inflate(R.layout.list_item_sound, container, false));
          mButton = (Button)itemView.findViewById(R.id.list_item_sound_button);
+         mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // play the Sound object set up by SoundAdapter.onBindViewHolder()
+               mBeatBox.play(mSound);
+            }
+         });
       }
 
       public void bindSound(Sound sound) {
@@ -68,6 +85,7 @@ public class BeatBoxFragment extends Fragment {
       }
 
       @Override
+      // this method binds the SoundHolder object at given position to the corresponding Sound object
       public void onBindViewHolder(SoundHolder holder, int position) {
          Sound sound = mSounds.get(position);
          holder.bindSound(sound);
