@@ -1,11 +1,20 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryDark">@color/dark_red</item>
+        <item name="colorAccent">@color/gray</item>
+        <item name="android:colorBackground">@color/soothing_blue</item>
+        <!-- override android:buttonStyle, to use the style BeatBoxButton defined below -->
+        <item name="android:buttonStyle">@style/BeatBoxButton</item>
     </style>
 
+    <!-- style BeatBoxButton has a single attribute android:background, which is a dark blue color.
+     it also inherits from android:style/Widget.Holo.Button, which has all the properties of a
+     standard Android button, so that you can selectively modify these properties -->
+    <style name="BeatBoxButton" parent="android:style/Widget.Holo.Button">
+        <item name="android:background">@color/dark_blue</item>
+    </style>
 </resources>
