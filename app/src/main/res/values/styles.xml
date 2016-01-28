@@ -15,6 +15,9 @@
      it also inherits from android:style/Widget.Holo.Button, which has all the properties of a
      standard Android button, so that you can selectively modify these properties -->
     <style name="BeatBoxButton" parent="android:style/Widget.Holo.Button">
-        <item name="android:background">@color/dark_blue</item>
+        <!-- use dark blue round drawable as button background
+        <item name="android:background">@drawable/button_beat_box_normal</item> -->
+        <!-- use state list drawable as button background -->
+        <item name="android:background">@drawable/button_beat_box</item>
     </style>
 </resources>

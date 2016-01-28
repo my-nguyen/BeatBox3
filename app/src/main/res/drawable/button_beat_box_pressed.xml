@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- this is a layer list drawable, which combines two drawables into one. this layer list drawable
+ adds a dark ring around the button when in the pressed state -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <!-- round-shape (oval) drawable filled with a RED color, used to draw a button PRESSED -->
+        <shape
+            android:shape="oval">
+            <solid android:color="@color/red"/>
+        </shape>
+    </item>
+    <item>
+        <!-- a dark red ring of 4dp width surrounds the round drawable above -->
+        <shape
+            android:shape="oval">
+            <stroke
+                android:width="4dp"
+                android:color="@color/dark_red"/>
+        </shape>
+    </item>
+</layer-list>
